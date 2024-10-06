@@ -1,5 +1,8 @@
 package util;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -66,6 +69,40 @@ public class Console {
 			}
 		}
 		return str;
+	}
+	
+	public static boolean getRequiredBoolean (String prompt) {
+		boolean bool = false;
+		boolean success = false;
+		while (!success) {
+			String input = getString(prompt);
+			if (input.equalsIgnoreCase("true")) {
+				bool = true;
+				success = true;
+			} else if (input.equalsIgnoreCase("false")) {
+				bool = false;
+				success = true;
+			} else {
+				
+				System.out.println("Entry required. Please enter 'true' or 'false'!");
+			}
+		}
+		return bool;
+	}
+	
+	public static LocalDate getRequiredLocalDate(String prompt) {
+	    LocalDate date = null;
+	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Define the expected date format
+
+	    while (date == null) {
+	        String dateString = Console.getRequiredString(prompt);
+	        try {
+	            date = LocalDate.parse(dateString, dateFormatter); // Parse to LocalDate
+	        } catch (DateTimeParseException e) {
+	            Console.printLine("Invalid date format. Please use yyyy-MM-dd.");
+	        }
+	    }
+	    return date;
 	}
 	
 	
