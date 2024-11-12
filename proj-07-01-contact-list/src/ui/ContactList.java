@@ -22,7 +22,7 @@ public class ContactList {
 			String phone = Console.getRequiredString("Enter phone: \n");
 						
 			Contact c = new Contact(fname, lname, email, phone);
-			contacts.add(c);			
+			contacts.add(c);		
 			
 			Console.printLine("--------------------------------------");
 			Console.printLine("----- Current Contact ----------------");
